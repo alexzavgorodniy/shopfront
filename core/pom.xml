@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <artifactId>shopfront</artifactId>
+    <groupId>com.shop</groupId>
+    <version>0.1</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>core</artifactId>
+  <packaging>jar</packaging>
+
+  <name>${project.parent.artifactId}::${project.artifactId}</name>
+
+  <properties>
+    <rootDir>${project.parent.basedir}</rootDir>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+    </dependency>
+  </dependencies>
+</project>

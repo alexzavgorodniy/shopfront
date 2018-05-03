@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>File reading application</title>
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/static/img/favicon.ico}"/>
+  <link rel="stylesheet" th:href="@{/static/css/reset.css}">
+  <link rel="stylesheet" th:href="@{/static/lib/bootstrap/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/static/lib/font-awesome/css/font-awesome.min.css}">
+  <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body class="wrapper">
+<header>
+  <img th:src="@{/static/img/logo.jpg}" class="logo header-logo" alt="logo">
+  <div class="header">
+    <h3>List of read files in all nested directories</h3>
+  </div>
+</header>
+<main class="table-responsive table-width">
+  <table class="table table-striped">
+    <!--<thead>
+    <tr>
+      <th>Number by order</th>
+      <th>File name</th>
+      <th>Number of lines</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="readFileDto : ${readFileDtos}">
+      <td th:text="${readFileDto.id}"></td>
+      <td style="text-align: left"><a th:href="@{'/filestat/'+${readFileDto.id}}" th:text="${readFileDto.name}"></a></td>
+      <td th:text="${readFileDto.lineCount}"></td>
+    </tr>
+    </tbody>-->
+  </table>
+</main>
+<script th:src="@{/static/lib/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/static/lib/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
