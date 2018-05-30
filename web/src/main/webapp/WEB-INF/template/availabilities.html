@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Список всех товаров с указанным наличием на складе</h3>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Производитель</th>
+      <th>Модель</th>
+      <th>Цена</th>
+      <th>Описание</th>
+      <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody th:each="item : ${items}">
+    <tr>
+      <td th:text="${item.id}"></td>
+      <td th:text="${item.manufacturer.title}"></td>
+      <td th:text="${item.title}"></td>
+      <td th:text="${item.price}"></td>
+      <td th:text="${item.description}"></td>
+      <td th:text="${item.category.name}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

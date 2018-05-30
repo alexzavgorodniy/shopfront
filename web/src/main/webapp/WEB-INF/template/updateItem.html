@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Редактирование товара</h3>
+  </div>
+  <form name="newItem" method="post" th:object="${newItem}">
+    <div>
+      <label for="newItemId">Текущая модель:</label>
+      <input id="newItemId" name="newItemId" type="hidden" th:field="*{id}" th:value="${oldItem.id}"/>
+    </div>
+    <div>
+      <label for="newItemTitle">Текущая модель:</label>
+      <input id="newItemTitle" name="newItemTitle" type="text" th:field="*{title}" th:text="${oldItem.title}"/>
+    </div>
+    <div>
+      <label>Текущий производитель</label>
+      <label th:text="${oldItem.manufacturer.title}"></label>
+      <select th:field="*{manufacturer.id}">
+        <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.title}"></option>
+      </select>
+    </div>
+    <div>
+      <label for="newItemPrice">Текущая цена:</label>
+      <input id="newItemPrice" name="newItemPrice" type="number" th:field="*{price}" th:text="${oldItem.price}">
+    </div>
+    <div>
+      <label for="newItemDescription">Текущее описание товара:</label>
+      <input id="newItemDescription" name="newItemDescription" type="text" th:field="*{description}" th:text="${oldItem.description}">
+    </div>
+    <div>
+      <label>Текущий вариант наличия товара на складе</label>
+      <label th:text="${oldItem.availability}"></label>
+      <select th:field="*{availability}">
+        <option th:each="availability : ${availabilities}"
+                th:value="${availability}"
+                th:text="${availability}">
+
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Текущая категория товара</label>
+      <label th:text="${oldItem.category.name}"></label>
+      <select th:field="*{category.id}">
+        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+      </select>
+    </div>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:fragment="page">
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин электроники</title>
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{/static/img/favicon.ico}"/>
+  <link rel="stylesheet" th:href="@{/static/css/reset.css}">
+  <link rel="stylesheet" th:href="@{/static/lib/bootstrap/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/static/lib/font-awesome/css/font-awesome.min.css}">
+  <link rel="stylesheet" th:href="@{/static/css/style.css}">
+</head>
+<body class="wrapper">
+<header>
+  <img th:src="@{/static/img/logo.jpg}" class="logo header-logo" alt="logo">
+</header>
+<main>
+  <div th:include="this :: content"></div>
+  <input class="btn btn-info" name="button" onclick="history.back();" value="Назад"/>
+</main>
+<script th:src="@{/static/lib/jquery/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/static/lib/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

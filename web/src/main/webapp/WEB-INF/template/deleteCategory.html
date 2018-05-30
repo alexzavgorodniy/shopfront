@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Удаление категории</h3>
+  </div>
+    <form name="deleteCat" th:object="${deleteCategory}" method="post">
+      <div>
+        <p>Выберите категорию:</p>
+        <select th:field="*{id}">
+          <option th:each="category : ${categories}" th:value="${category.id}"
+                  th:text="${category.name}"></option>
+        </select>
+      </div>
+      <div>
+        <input class="btn btn-primary" name="submit" type="submit" value="Удалить"/>
+      </div>
+    </form>
+</div>
+</body>
+</html>

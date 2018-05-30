@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Список всех доступных производителей товаров</h3>
+  </div>
+  <div>
+    <form name="manufact" th:object="${selectedManufacturer}" method="post">
+      <div>
+        <p>Выберите производителя:</p>
+        <select th:field="*{id}">
+          <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.title}"></option>
+        </select>
+      </div>
+      <div>
+        <input name="submit" type="submit" value="Показать"/>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

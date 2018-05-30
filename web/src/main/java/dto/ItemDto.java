@@ -1,57 +1,25 @@
-package model;
+package dto;
 
-import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import model.Availability;
+import model.Category;
+import model.Manufacturer;
 
-@Entity
-@Table(name = "item")
-public class Item {
+public class ItemDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="manufacturer_id")
     private Manufacturer manufacturer;
 
-    @Column(name = "price")
     private Double price;
 
-    @Column(name = "description")
     private String description;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "availability")
     private Availability availability;
 
-    @OneToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "category_id")
     private Category category;
 
-    public Item() {
-    }
-
-    public Item(String title) {
-        this.title = Objects.requireNonNull(title, "Item title cannot be NULL!");
-    }
 
     public Long getId() {
         return id;

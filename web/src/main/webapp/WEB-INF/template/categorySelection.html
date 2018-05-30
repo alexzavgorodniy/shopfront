@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Список всех доступных категорий товаров</h3>
+  </div>
+  <div>
+    <form name="cat" th:object="${selectedCategory}" method="post">
+      <div>
+        <p>Выберите категорию:</p>
+        <select th:field="*{id}">
+          <option th:each="category : ${categories}"
+                  th:value="${category.id}"
+                  th:text="${category.name}"></option>
+        </select>
+      </div>
+      <div>
+        <input name="submit" type="submit" value="Показать"/>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

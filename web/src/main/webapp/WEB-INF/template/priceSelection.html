@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Список всех доступных категорий товаров</h3>
+  </div>
+  <div>
+    <form name="price" method="post">
+      <div>
+        <p>Введите диапазон цен:</p>
+      </div>
+      <div>
+        <label for="minPrice"> от </label>
+        <input type="number" th:value="${minPrice}" id="minPrice" name="minPrice">
+      </div>
+      <div>
+        <label for="maxPrice"> до </label>
+        <input type="number" th:value="${maxPrice}" id="maxPrice" name="maxPrice">
+      </div>
+      <div>
+        <input name="submit" type="submit" value="Показать"/>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

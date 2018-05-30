@@ -26,18 +26,24 @@
       <version>0.1</version>
       <scope>compile</scope>
     </dependency>
-  <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-  </dependency>
-  <dependency>
-    <groupId>org.thymeleaf</groupId>
-    <artifactId>thymeleaf-spring4</artifactId>
-  </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring4</artifactId>
+    </dependency>
+    <!--GSON-->
+    <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
   <build>
-  <finalName>shopfront</finalName>
+    <finalName>shopfront</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

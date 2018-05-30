@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+
+  <h4>Просмотр товаров доступен:</h4>
+  <a th:href="@{'/categorySelection'}">по категориям</a>
+  <p></p>
+  <a th:href="@{'/manufacturerSelection'}">по производителям</a>
+  <p></p>
+  <a th:href="@{'/availabilitySelection'}">по наличию на складе</a>
+  <p></p>
+  <a th:href="@{'/priceSelection'}">по цене</a>
+</div>
+</body>
+</html>

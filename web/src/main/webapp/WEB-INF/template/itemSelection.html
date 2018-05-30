@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div>
+    <form name="itemSelection" method="post" th:object="${selectedItem}">
+      <div>
+        <div>
+          <label for="inputId">Введите ID:</label>
+          <input id="inputId" name="inputId" type="number" th:field="*{id}">
+        </div>
+        <hr>
+        <div class="header">
+          <h3>Список всех доступных товаров</h3>
+        </div>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Производитель</th>
+            <th>Модель</th>
+            <th>Цена</th>
+            <th>Описание</th>
+            <th>Наличие</th>
+            <th>Категория</th>
+          </tr>
+          </thead>
+          <tbody th:each="item : ${items}">
+          <tr>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.manufacturer.title}"></td>
+            <td th:text="${item.title}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.description}"></td>
+            <td th:text="${item.availability}"></td>
+            <td th:text="${item.category.name}"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <input name="submit" type="submit" value="Показать"/>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Добавление новой категории</h3>
+  </div>
+  <form name="newCat" method="post">
+  <div>
+    <label for="newCategory">Введите название новой категории:</label>
+    <input id="newCategory" name="newCategory" type="text" th:value="${newCategory}">
+  </div>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

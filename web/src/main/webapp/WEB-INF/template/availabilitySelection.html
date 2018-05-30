@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Список всех доступных вариантов наличия товаров</h3>
+  </div>
+  <div>
+    <form name="avail" method="post" th:object="${selectedAvail}">
+      <div>
+        <label>Выберите вариант:</label>
+        <select th:field="*{selectedAvail}">
+          <option th:each="availability : ${availabilities}"
+                  th:value="${availability}"
+                  th:text="${availability}">
+
+          </option>
+        </select>
+      </div>
+      <div>
+        <input name="show" type="submit" value="Показать"/>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

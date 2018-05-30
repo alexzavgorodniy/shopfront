@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Редактирование доступно для:</h3>
+  </div>
+  <div>
+    <h5>товаров</h5>
+    <table class="table" style="text-align: center">
+      <tbody>
+        <tr>
+          <td class="btn btn-light"><a th:href="@{/createItem}">добавить</a></td>
+          <td class="btn btn-light"><a th:href="@{/itemSelection?param=DELETE}">удалить</a></td>
+          <td class="btn btn-light"><a th:href="@{/itemSelection?param=UPDATE}">редактировать</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <h5>производителей</h5>
+    <table class="table" style="text-align: center">
+      <tbody>
+      <tr>
+        <td class="btn btn-light"><a th:href="@{/createManufacturer}">добавить</a></td>
+        <td class="btn btn-light"><a th:href="@{/deleteManufacturer}">удалить</a></td>
+        <td class="btn btn-light"><a th:href="@{/updateManufacturer}">редактировать</a></td>
+      </tr>
+      </tbody>
+    </table>
+    <h5>категорий товаров</h5>
+    <table class="table" style="text-align: center">
+      <tbody>
+      <tr>
+        <td class="btn btn-light"><a th:href="@{/createCategory}">добавить</a></td>
+        <td class="btn btn-light"><a th:href="@{/deleteCategory}">удалить</a></td>
+        <td class="btn btn-light"><a th:href="@{/updateCategory}">редактировать</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

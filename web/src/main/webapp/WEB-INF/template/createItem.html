@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Добавление нового товара</h3>
+  </div>
+  <form name="newItem" method="post" th:object="${newItem}">
+    <div>
+      <label for="newItemTitle">Введите модель товара:</label>
+      <input id="newItemTitle" name="newItemTitle" type="text" th:field="*{title}">
+    </div>
+    <div>
+      <label>Выберите производителя</label>
+      <select th:field="*{manufacturer.id}">
+        <option th:each="manufacturer : ${manufacturers}"
+                th:value="${manufacturer.id}"
+                th:text="${manufacturer.title}"></option>
+      </select>
+    </div>
+    <div>
+      <label for="newItemPrice">Введите цену</label>
+      <input id="newItemPrice" name="newItemPrice" type="number" th:field="*{price}">
+    </div>
+    <div>
+      <label for="newItemDescription">Введите краткое описание товара:</label>
+      <input id="newItemDescription" name="newItemDescription" type="text" th:field="*{description}">
+    </div>
+    <div>
+      <label>Выберите вариант наличия товара на складе</label>
+      <select th:field="*{availability}">
+        <option th:value="${availability.ABSENT}" th:text="ABSENT"></option>
+        <option th:value="${availability.PRESENT}" th:text="PRESENT"></option>
+      </select>
+    </div>
+    <div>
+      <label>Выберите категорию товара</label>
+      <select th:field="*{category.id}">
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}"></option>
+      </select>
+    </div>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

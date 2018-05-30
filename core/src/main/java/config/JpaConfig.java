@@ -43,7 +43,6 @@ public class JpaConfig {
         dataSourceConfig.setJdbcUrl(url);
         dataSourceConfig.setUsername(username);
         dataSourceConfig.setPassword(password);
-
         return new HikariDataSource(dataSourceConfig);
     }
 
@@ -51,10 +50,8 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
                 new LocalContainerEntityManagerFactoryBean();
-
-        entityManagerFactoryBean.setPackagesToScan("levelup.model");
+        entityManagerFactoryBean.setPackagesToScan("model");
         entityManagerFactoryBean.setJpaProperties(jpaProperties());
-
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return entityManagerFactoryBean;
