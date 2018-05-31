@@ -30,8 +30,6 @@ public class ItemController {
 
     private ManufacturerRepository manufacturerRepository;
 
-    private ItemDto itemDto;
-
     @Autowired
     public ItemController(ItemRepository itemRepository,
             CategoryRepository categoryRepository,
@@ -39,27 +37,6 @@ public class ItemController {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
         this.manufacturerRepository = manufacturerRepository;
-    }
-
-    @Transactional
-    @GetMapping("/createItem")
-    public ModelAndView addNewItem() {
-        ModelAndView modelAndView = new ModelAndView("createItem");
-        List<Category> categories = categoryRepository.findAll();
-        List<Manufacturer> manufacturers = manufacturerRepository.findAll();
-        Availability availability = Availability.ABSENT;
-        modelAndView.addObject("categories", categories);
-        modelAndView.addObject("manufacturers", manufacturers);
-        modelAndView.addObject("availability", availability);
-        modelAndView.addObject("newItem", new Item());
-        return modelAndView;
-    }
-
-    @PostMapping("/createItem")
-    @ResponseBody
-    public String createItem(@ModelAttribute(name = "newItem") Item newItem) {
-        itemRepository.save(newItem);
-        return "Success! Item added!";
     }
 
     @GetMapping("/itemSelection")
@@ -72,34 +49,56 @@ public class ItemController {
     }
 
     @PostMapping("/itemSelection")
-    public String processSelectedItem(@RequestParam String param, @ModelAttribute Item selectedItem) {
+    public String processSelectedItem(@RequestParam(required = false) String param,
+            @ModelAttribute Item selectedItem) {
         if (param.equals("DELETE")) {
             itemRepository.delete(selectedItem.getId());
-            return "Success! Item deleted!";
-        }else if (param.equals("UPDATE")) {
+            return "redirect:/successPage";
+        } else if (param.equals("UPDATE")) {
             return "redirect:/updateItem/" + selectedItem.getId();
         }
-        return "";
+        return "redirect:/createItem";
+    }
+
+    @Transactional
+    @GetMapping("/createItem")
+    public ModelAndView createItem() {
+        ModelAndView modelAndView = new ModelAndView("createItem");
+        List<Category> categories = categoryRepository.findAll();
+        List<Manufacturer> manufacturers = manufacturerRepository.findAll();
+        Availability availability = Availability.ABSENT;
+        modelAndView.addObject("categories", categories);
+        modelAndView.addObject("manufacturers", manufacturers);
+        modelAndView.addObject("availability", availability);
+        modelAndView.addObject("newItem", new Item());
+        return modelAndView;
+    }
+
+    @PostMapping("/createItem")
+    public String createItem(@ModelAttribute(name = "newItem") Item newItem) {
+        itemRepository.save(newItem);
+        return "redirect:/successPage";
     }
 
     @GetMapping("/updateItem/{id}")
     public ModelAndView showUpdateItemPage(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("updateItem");
         Item oldItem = itemRepository.findOne(id);
+        Item newItem = new Item();
+        newItem.setId(id);
         List<Manufacturer> manufacturers = manufacturerRepository.findAll();
         List<Category> categories = categoryRepository.findAll();
         modelAndView.addObject("oldItem", oldItem);
         modelAndView.addObject("manufacturers", manufacturers);
         modelAndView.addObject("categories", categories);
         modelAndView.addObject("availabilities", Arrays.asList(Availability.values()));
-        modelAndView.addObject("newItem", new Item());
+        modelAndView.addObject("newItem", newItem);
         return modelAndView;
     }
 
     @PostMapping("/updateItem/{id}")
-    @ResponseBody
     public String showItemUpdated(@ModelAttribute Item newItem) {
-        itemRepository.saveAndFlush(newItem);
-        return "Success! Item updated!";
+        itemRepository.save(newItem);
+        return "redirect:/successPage";
     }
 }

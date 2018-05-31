@@ -19,7 +19,7 @@ public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificat
     List<Item> findAllItemsByManufacturer(@Param("id") Long id);
 
     @Query(value = "SELECT i FROM Item i WHERE availability = :selectedAvailability")
-    List<Item> findAllItemsByAvaibility(@Param("selectedAvailability") Availability availability);
+    List<Item> findAllItemsByAvailability(@Param("selectedAvailability") Availability availability);
 
     @Query(value = "SELECT i FROM Item i WHERE price >= :minPrice AND price <= :maxPrice")
     List<Item> findAllItemsByPrice(@Param("minPrice") Double minPrice,

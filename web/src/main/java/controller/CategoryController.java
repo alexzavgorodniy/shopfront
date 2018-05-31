@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import repository.CategoryRepository;
 import repository.ItemRepository;
@@ -18,31 +18,39 @@ import repository.ItemRepository;
 @Controller
 public class CategoryController {
 
-    private CategoryRepository repository;
+    private CategoryRepository categoryRepository;
     private ItemRepository itemRepository;
 
     @Autowired
-    public CategoryController(CategoryRepository repository, ItemRepository itemRepository) {
-        this.repository = repository;
+    public CategoryController(CategoryRepository categoryRepository, ItemRepository itemRepository) {
+        this.categoryRepository = categoryRepository;
         this.itemRepository = itemRepository;
     }
 
     @GetMapping("/categorySelection")
     public ModelAndView showAllCategories() {
         ModelAndView modelAndView = new ModelAndView("categorySelection");
-        List<Category> categories = repository.findAll();
+        List<Category> categories = categoryRepository.findAll();
         modelAndView.addObject("categories", categories);
         modelAndView.addObject("selectedCategory", new Category());
         return modelAndView;
     }
 
     @PostMapping("/categorySelection")
-    public String selectCategory(@ModelAttribute Category selectedCategory) {
-        return "redirect:" + "/categories/" + selectedCategory.getId();
+    public String selectCategory(@RequestParam(required = false) String param,
+            @ModelAttribute Category selectedCategory) {
+        if (param != null) {
+            if (param.equals("DELETE")) {
+                categoryRepository.delete(selectedCategory.getId());
+                return "redirect:/successPage";
+            } else if (param.equals("UPDATE")) {
+                return "redirect:/updateCategory/" + selectedCategory.getId();
+            }
+        }
+        return "redirect:/categories/" + selectedCategory.getId();
     }
 
     @GetMapping("/categories/{id}")
-    @Transactional
     public ModelAndView selectedCategory(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("categories");
         List<Item> items = itemRepository.findAllItemsByCategory(id);
@@ -56,17 +64,26 @@ public class CategoryController {
     }
 
     @PostMapping("/createCategory")
-    @ResponseBody
     public String creatingCategory(String newCategory) {
         Category category = new Category(newCategory);
-        repository.save(category);
-        return "Success! Category added!";
+        categoryRepository.save(category);
+        return "redirect:/successPage";
     }
 
-    @GetMapping("/deleteCategory")
-    public ModelAndView showDeleteCategoryPage() {
-        ModelAndView modelAndView = new ModelAndView("deleteCategory");
+    @GetMapping("/updateCategory/{id}")
+    public ModelAndView showUpdateCategoryPage(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("updateCategory");
+        Category oldCategory = categoryRepository.findOne(id);
+        Category newCategory = new Category();
+        newCategory.setId(id);
+        modelAndView.addObject("oldCategory", oldCategory);
+        modelAndView.addObject("newCategory", newCategory);
         return modelAndView;
     }
 
+    @PostMapping("/updateCategory/{id}")
+    public String updatingCategory(@ModelAttribute Category newCategory) {
+        categoryRepository.save(newCategory);
+        return "redirect:/successPage";
+    }
 }

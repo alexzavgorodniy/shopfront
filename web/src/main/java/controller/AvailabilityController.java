@@ -40,7 +40,7 @@ public class AvailabilityController {
     public ModelAndView showAvailabilities(@PathVariable String selectedAvail) {
         ModelAndView modelAndView = new ModelAndView("availabilities");
         Availability availabilityOf = Availability.of(selectedAvail);
-        List<Item> items = itemRepository.findAllItemsByAvaibility(availabilityOf);
+        List<Item> items = itemRepository.findAllItemsByAvailability(availabilityOf);
         modelAndView.addObject("items", items);
         return modelAndView;
     }
