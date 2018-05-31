@@ -8,15 +8,13 @@
     <h3>Список всех доступных вариантов наличия товаров</h3>
   </div>
   <div>
-    <form name="avail" method="post" th:object="${selectedAvail}">
+    <form name="avail" th:object="${selectedItemAvailability}" method="post">
       <div>
-        <label>Выберите вариант:</label>
-        <select th:field="*{selectedAvail}">
+        <p>Выберите вариант:</p>
+        <select th:field="*{availability}">
           <option th:each="availability : ${availabilities}"
                   th:value="${availability}"
-                  th:text="${availability}">
-
-          </option>
+                  th:text="${availability}"></option>
         </select>
       </div>
       <div>
