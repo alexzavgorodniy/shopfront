@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Редактирование подкатегории</h3>
+  </div>
+    <table class="table table-center-content">
+      <tr>
+        <td>
+          <label>Выбранная категория:</label>
+          <h4 th:text="${category.name}"></h4>
+        </td>
+        <td>
+        </td>
+        <td th:include="subcategory :: subcategorySelect"></td>
+      </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -36,7 +36,7 @@ public class PriceController {
         if (maxPrice == null || maxPrice < 0) {
             maxPrice = Double.MAX_VALUE;
         }
-        return "redirect:" + "/prices/" + minPrice + "/" + maxPrice;
+        return "redirect:/prices/" + minPrice + "/" + maxPrice;
     }
 
     @GetMapping("/prices/{minPrice}/{maxPrice}")

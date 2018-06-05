@@ -9,14 +9,19 @@
   </div>
   <div>
     <form name="manufact" th:object="${selectedManufacturer}" method="post">
+      <table class="table table-center-content">
+        <tr>
+          <td>
+            <label>Выберите производителя:</label>
+            <select th:field="*{id}">
+              <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}"
+                      th:text="${manufacturer.title}"></option>
+            </select>
+          </td>
+        </tr>
+      </table>
       <div>
-        <p>Выберите производителя:</p>
-        <select th:field="*{id}">
-          <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.title}"></option>
-        </select>
-      </div>
-      <div>
-        <input name="submit" type="submit" value="Показать"/>
+        <input class="btn btn-primary" name="submit" type="submit" value="Показать"/>
       </div>
     </form>
   </div>

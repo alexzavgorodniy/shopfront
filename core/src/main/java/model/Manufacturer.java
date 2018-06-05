@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Manufacturer {
     }
 
     public Manufacturer(String title) {
-        this.title = title;
+        this.title = Objects.requireNonNull(title, "Manufacturer title cannot be NULL!");
     }
 
     public Long getId() {
@@ -31,7 +32,7 @@ public class Manufacturer {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = Objects.requireNonNull(id, "Id cannot be NULL!");
     }
 
     public String getTitle() {
@@ -39,6 +40,6 @@ public class Manufacturer {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = Objects.requireNonNull(title, "Manufacturer title cannot be NULL!");
     }
 }

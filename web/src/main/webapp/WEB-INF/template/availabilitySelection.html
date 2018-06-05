@@ -9,16 +9,20 @@
   </div>
   <div>
     <form name="avail" th:object="${selectedItemAvailability}" method="post">
+      <table class="table table-center-content">
+        <tr>
+          <td>
+            <label>Выберите вариант:</label>
+            <select th:field="*{availability}">
+              <option th:each="availability : ${availabilities}"
+                      th:value="${availability}"
+                      th:text="${availability}"></option>
+            </select>
+          </td>
+        </tr>
+      </table>
       <div>
-        <p>Выберите вариант:</p>
-        <select th:field="*{availability}">
-          <option th:each="availability : ${availabilities}"
-                  th:value="${availability}"
-                  th:text="${availability}"></option>
-        </select>
-      </div>
-      <div>
-        <input name="show" type="submit" value="Показать"/>
+        <input class="btn btn-primary" name="show" type="submit" value="Показать"/>
       </div>
     </form>
   </div>

@@ -9,19 +9,28 @@
   </div>
   <div>
     <form name="price" method="post">
+      <table class="table table-center-content">
+        <tr>
+          <td>
+            <label>Введите диапазон цен:</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="minPrice"> от </label>
+            <input type="number" th:value="${minPrice}" id="minPrice" name="minPrice">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="maxPrice"> до </label>
+            <input type="number" th:value="${maxPrice}" id="maxPrice" name="maxPrice">
+          </td>
+        </tr>
+      </table>
+      <br>
       <div>
-        <p>Введите диапазон цен:</p>
-      </div>
-      <div>
-        <label for="minPrice"> от </label>
-        <input type="number" th:value="${minPrice}" id="minPrice" name="minPrice">
-      </div>
-      <div>
-        <label for="maxPrice"> до </label>
-        <input type="number" th:value="${maxPrice}" id="maxPrice" name="maxPrice">
-      </div>
-      <div>
-        <input name="submit" type="submit" value="Показать"/>
+        <input class="btn btn-primary" name="submit" type="submit" value="Показать"/>
       </div>
     </form>
   </div>

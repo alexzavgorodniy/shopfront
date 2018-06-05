@@ -7,11 +7,13 @@
   <div>
     <form name="itemSelection" method="post" th:object="${selectedItem}">
       <div>
+        <br>
         <div>
           <label for="inputId">Введите ID:</label>
-          <input id="inputId" name="inputId" type="number" th:field="*{id}">
+          <input id="inputId" name="inputId" type="number" th:field="*{id}" required>
+          <input name="submit" type="submit" value="Готово"/>
         </div>
-        <hr>
+        <br>
         <div class="header">
           <h3>Список всех доступных товаров</h3>
         </div>
@@ -25,6 +27,7 @@
             <th>Описание</th>
             <th>Наличие</th>
             <th>Категория</th>
+            <th>Подкатегория</th>
           </tr>
           </thead>
           <tbody th:each="item : ${items}">
@@ -35,14 +38,13 @@
             <td th:text="${item.price}"></td>
             <td th:text="${item.description}"></td>
             <td th:text="${item.availability}"></td>
-            <td th:text="${item.category.name}"></td>
+            <td th:text="${item.subcategory.category.name}"></td>
+            <td th:text="${item.subcategory.subname}"></td>
           </tr>
           </tbody>
         </table>
       </div>
-      <div>
-        <input name="submit" type="submit" value="Готово"/>
-      </div>
+
     </form>
   </div>
 </div>

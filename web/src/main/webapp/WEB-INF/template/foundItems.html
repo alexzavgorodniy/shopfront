@@ -5,12 +5,13 @@
 
 <div th:fragment="content">
   <div class="header">
-    <h3>Список всех товаров данного производителя</h3>
+    <h3>Список всех товаров с указанной или похожей моделью</h3>
   </div>
   <table class="table">
     <thead>
     <tr>
       <th>Id</th>
+      <th>Производитель</th>
       <th>Модель</th>
       <th>Цена</th>
       <th>Описание</th>
@@ -22,6 +23,7 @@
     <tbody th:each="item : ${items}">
     <tr>
       <td th:text="${item.id}"></td>
+      <td th:text="${item.manufacturer.title}"></td>
       <td th:text="${item.title}"></td>
       <td th:text="${item.price}"></td>
       <td th:text="${item.description}"></td>

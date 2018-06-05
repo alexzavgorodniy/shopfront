@@ -29,22 +29,22 @@ public class Item {
     private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="manufacturer_id")
+    @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
 
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 60000)
     private String description;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "availability")
     private Availability availability;
 
-    @OneToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
 
     public Item() {
     }
@@ -58,7 +58,7 @@ public class Item {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = Objects.requireNonNull(id, "Id cannot be NULL!");
     }
 
     public String getTitle() {
@@ -66,7 +66,7 @@ public class Item {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = Objects.requireNonNull(title, "Item title cannot be NULL!");
     }
 
     public Manufacturer getManufacturer() {
@@ -101,11 +101,11 @@ public class Item {
         this.availability = availability;
     }
 
-    public Category getCategory() {
-        return category;
+    public Subcategory getSubcategory() {
+        return subcategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setSubcategory(Subcategory subcategory) {
+        this.subcategory = subcategory;
     }
 }

@@ -6,6 +6,17 @@
 <div th:fragment="content">
 
   <h4>Просмотр товаров доступен:</h4>
+  <form name="itemTitle" method="post">
+  <table class="table table-center-content">
+    <tr>
+      <td>
+        <label>Поиск по модели товара</label>
+        <input name="itemTitle" type="text" th:value="${itemTitle}">
+        <input class="btn btn-primary" name="submit" type="submit" value="Искать"/>
+      </td>
+    </tr>
+  </table>
+  </form>
   <a th:href="@{'/categorySelection'}">по категориям</a>
   <p></p>
   <a th:href="@{'/manufacturerSelection'}">по производителям</a>

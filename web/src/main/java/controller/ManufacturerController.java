@@ -1,5 +1,6 @@
 package controller;
 
+import exception.ErrorMessage;
 import java.util.List;
 import model.Category;
 import model.Item;
@@ -40,15 +41,22 @@ public class ManufacturerController {
     @PostMapping("/manufacturerSelection")
     public String selectManufacturer(@RequestParam(required = false) String param,
             @ModelAttribute Manufacturer selectedManufacturer) {
+        Long manufacturerId = selectedManufacturer.getId();
         if (param != null) {
             if (param.equals("DELETE")) {
-                manufacturerRepository.delete(selectedManufacturer.getId());
-                return "redirect:/successPage";
+                List<Item> manufacturers = itemRepository
+                        .findAllItemsByManufacturer(manufacturerId);
+                if (manufacturers.isEmpty()) {
+                    manufacturerRepository.delete(manufacturerId);
+                    return "redirect:/success";
+                } else {
+                    return "redirect:/error/" + ErrorMessage.MANUFACTURER_CANNOT_BE_DELETED.getMessage();
+                }
             } else if (param.equals("UPDATE")) {
-                return "redirect:/updateManufacturer/" + selectedManufacturer.getId();
+                return "redirect:/updateManufacturer/" + manufacturerId;
             }
         }
-        return "redirect:/manufacturers/" + selectedManufacturer.getId();
+        return "redirect:/manufacturers/" + manufacturerId;
     }
 
     @GetMapping("/manufacturers/{id}")
@@ -68,7 +76,7 @@ public class ManufacturerController {
     public String selectedPrices(String newManufacturer) {
         Manufacturer manufacturer = new Manufacturer(newManufacturer);
         manufacturerRepository.save(manufacturer);
-        return "redirect:/successPage";
+        return "redirect:/success";
     }
 
     @GetMapping("/updateManufacturer/{id}")
@@ -85,6 +93,6 @@ public class ManufacturerController {
     @PostMapping("/updateManufacturer/{id}")
     public String updatingManufacturer(@ModelAttribute Manufacturer newManufacturer) {
         manufacturerRepository.save(newManufacturer);
-        return "redirect:/successPage";
+        return "redirect:/success";
     }
 }

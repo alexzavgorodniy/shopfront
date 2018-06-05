@@ -5,23 +5,22 @@
 
 <div th:fragment="content">
   <div class="header">
-    <h3>Редактирование производителя</h3>
+    <h3>Добавление подкатегории товаров</h3>
   </div>
-  <form name="newManufacturer" method="post" th:object="${newManufacturer}">
+  <form name="newSubcategory" method="post">
     <table class="table">
       <tr>
         <td>
-          <label>Текущий производитель товара</label>
+          <p>Выбранная категория:</p>
         </td>
         <td>
-          <label th:text="${oldManufacturer.title}"></label>
+          <label th:text="${categoryName}"></label>
         </td>
         <td>
-          <label>Новое значение</label>
+          <label for="newSubcategory">Введите название новой подкатегории:</label>
         </td>
         <td>
-          <input id="newManufacturerTitle" name="newManufacturerTitle" type="text"
-                 th:field="*{title}">
+          <input id="newSubcategory" name="newSubcategory" type="text" th:value="${newSubcategory}">
         </td>
       </tr>
     </table>

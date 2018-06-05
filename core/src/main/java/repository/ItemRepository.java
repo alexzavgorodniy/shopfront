@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificationExecutor<Item> {
 
-    @Query(value = "SELECT i FROM Item i WHERE category_id = :id")
-    List<Item> findAllItemsByCategory(@Param("id") Long id);
+    @Query(value = "SELECT i FROM Item i WHERE subcategory_id = :id")
+    List<Item> findAllItemsBySubcategoryId(@Param("id") Long id);
 
     @Query(value = "SELECT i FROM Item i WHERE manufacturer_id = :id")
     List<Item> findAllItemsByManufacturer(@Param("id") Long id);

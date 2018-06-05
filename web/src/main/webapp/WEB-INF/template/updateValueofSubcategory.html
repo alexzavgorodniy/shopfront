@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:include="layout :: page">
+<body>
+
+<div th:fragment="content">
+  <div class="header">
+    <h3>Редактирование подкатегории</h3>
+  </div>
+  <form name="newSubcategory" method="post" th:object="${newSubcategory}">
+    <table class="table table-center-content">
+      <tr>
+        <td>
+          <label>Выбранная категория:</label>
+          <h4 th:text="${category.name}"></h4>
+        </td>
+        <td>
+          <label>Выбранная подкатегория:</label>
+          <h4 th:text="${oldSubcategory.subname}"></h4>
+        </td>
+        <td>
+          <label>Новое значение</label>
+          <input id="newSubcategorySubname" name="newSubcategorySubname" type="text"
+                 th:field="*{subname}">
+<!--
+          <input id="newSubcategoryId" name="newSubcategoryId" type="hidden"
+                 th:field="*{id}" th:value="${oldSubcategory.id}">
+          <input id="newSubcategoryCategory" name="newSubcategoryCategory" type="hidden"
+                 th:field="*{category}" th:value="${oldSubcategory.category}">-->
+        </td>
+      </tr>
+    </table>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

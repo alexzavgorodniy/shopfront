@@ -8,13 +8,21 @@
     <h3>Добавление новой категории</h3>
   </div>
   <form name="newCat" method="post">
-  <div>
-    <label for="newCategory">Введите название новой категории:</label>
-    <input id="newCategory" name="newCategory" type="text" th:value="${newCategory}">
-  </div>
+    <table class="table table-center-content">
+      <tr>
+        <td>
+          <label for="newCategory">Введите название новой категории:</label>
+          <input id="newCategory" name="newCategory" type="text" th:value="${newCategory}" required>
+        </td>
+      </tr>
+    </table>
     <div>
       <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
     </div>
+    <br>
+    <a th:href="@{/categorySelection(param=ADD_SUBCATEGORY)}">Добавить подкатегорию в существующую
+      категорию</a>
+    <br>
   </form>
 </div>
 </body>

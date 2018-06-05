@@ -13,10 +13,11 @@
 </head>
 <body class="wrapper">
 <header>
-  <img th:src="@{/static/img/logo.jpg}" class="logo header-logo" alt="logo">
+  <a th:href="@{/index}"><img th:src="@{/static/img/logo.jpg}" class="logo header-logo" alt="logo"></a>
 </header>
 <main>
   <div th:include="this :: content"></div>
+  <br>
   <input class="btn btn-info" name="button" onclick="history.back();" value="Назад"/>
 </main>
 <script th:src="@{/static/lib/jquery/jquery-3.2.1.min.js}"></script>

@@ -8,39 +8,110 @@
     <h3>Редактирование товара</h3>
   </div>
   <form name="newItem" method="post" th:object="${newItem}">
-    <div>
-      <label for="newItemTitle">Текущая модель:</label>
-      <input id="newItemTitle" name="newItemTitle" type="text" th:field="*{title}" th:placeholder="${oldItem.title}"/>
-    </div>
-    <div>
-      <label>Текущий производитель</label>
-      <label th:text="${oldItem.manufacturer.title}"></label>
-      <select th:field="*{manufacturer.id}">
-        <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.title}"></option>
-      </select>
-    </div>
-    <div>
-      <label for="newItemPrice">Текущая цена:</label>
-      <input id="newItemPrice" name="newItemPrice" type="number" th:field="*{price}" th:placeholder="${oldItem.price}">
-    </div>
-    <div>
-      <label for="newItemDescription">Текущее описание товара:</label>
-      <input id="newItemDescription" name="newItemDescription" type="text" th:field="*{description}" th:placeholder="${oldItem.description}">
-    </div>
-    <div>
-      <label>Текущий вариант наличия товара на складе</label>
-      <label th:text="${oldItem.availability}"></label>
-      <select th:field="*{availability}">
-        <option th:each="availability : ${availabilities}" th:value="${availability}" th:text="${availability}"></option>
-      </select>
-    </div>
-    <div>
-      <label>Текущая категория товара</label>
-      <label th:text="${oldItem.category.name}"></label>
-      <select th:field="*{category.id}">
-        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-      </select>
-    </div>
+    <table class="table">
+      <tr>
+        <td>
+          <label>Текущий производитель</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.manufacturer.title}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <select th:field="*{manufacturer.id}">
+            <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}"
+                    th:text="${manufacturer.title}"></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="newItemTitle">Текущая модель:</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.title}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <input id="newItemTitle" name="newItemTitle" type="text" th:field="*{title}"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="newItemPrice">Текущая цена:</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.price}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <input id="newItemPrice" name="newItemPrice" type="number" th:field="*{price}">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="newItemDescription">Текущее описание товара:</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.description}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <input id="newItemDescription" name="newItemDescription" type="text"
+                 th:field="*{description}">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Текущий вариант наличия товара на складе</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.availability}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <select th:field="*{availability}">
+            <option th:each="availability : ${availabilities}" th:value="${availability}"
+                    th:text="${availability}"></option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Текущая категория товара</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.subcategory.category.name}"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Текущая подкатегория товара</label>
+        </td>
+        <td>
+          <label th:text="${oldItem.subcategory.subname}"></label>
+        </td>
+        <td>
+          <label>Новое значение</label>
+        </td>
+        <td>
+          <select th:field="*{subcategory.id}">
+            <option th:each="subcategory : ${subcategories}" th:value="${subcategory.id}"
+                    th:text="${subcategory.subname}"></option>
+          </select>
+        </td>
+      </tr>
+    </table>
     <div>
       <input class="btn btn-primary" name="submit" type="submit" value="Сохранить"/>
     </div>

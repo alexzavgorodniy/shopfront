@@ -10,6 +10,7 @@ import model.Availability;
 import model.Category;
 import model.Item;
 import model.Manufacturer;
+import model.Subcategory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,26 +23,34 @@ public class ItemRepositoryIT extends RepositoryIT {
     private ManufacturerRepository manufacturerRepository;
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private EntityManager entityManager;
 
     @Test
     public void shouldSaveItemIntoDB() {
         //given
         Item item = new Item("GSX-001");
-        item.setDescription("motorcycle");
         Category category = new Category("KBT");
-        item.setCategory(category);
+        Subcategory subcategory = new Subcategory("Washmachine");
+        Manufacturer manufacturer = new Manufacturer("Honda");
+        category.addSubcategory(subcategory);
+        item.setDescription("motorcycle");
+        item.setSubcategory(subcategory);
         item.setAvailability(Availability.ABSENT);
         item.setPrice(2.35);
-        Manufacturer manufacturer = new Manufacturer("Honda");
-        manufacturerRepository.save(manufacturer);
         item.setManufacturer(manufacturer);
+        manufacturerRepository.save(manufacturer);
+        categoryRepository.save(category);
         //when
         repository.save(item);
         //then
         Item maybeItem = entityManager.createQuery("SELECT i FROM Item i", Item.class)
                 .getSingleResult();
         assertEquals(item,maybeItem);
+        assertEquals(maybeItem.getSubcategory().getSubname(),"Washmachine");
+        assertEquals(maybeItem.getSubcategory().getCategory().getName(),"KBT");
 
     }
 }

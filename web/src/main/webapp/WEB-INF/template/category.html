@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:fragment="categorySelect">
+<body>
+<div>
+  <form name="cat" th:object="${selectedCategory}" method="post">
+    <table class="table table-center-content">
+      <tr>
+        <td>
+          <label>Выберите категорию:</label>
+          <select th:field="*{id}">
+            <option th:each="category : ${categories}"
+                    th:value="${category.id}"
+                    th:text="${category.name}"></option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Выбрать"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

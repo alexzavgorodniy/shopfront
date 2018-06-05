@@ -16,6 +16,7 @@
       <th>Цена</th>
       <th>Описание</th>
       <th>Категория</th>
+      <th>Подкатегория</th>
     </tr>
     </thead>
     <tbody th:each="item : ${items}">
@@ -25,7 +26,8 @@
       <td th:text="${item.title}"></td>
       <td th:text="${item.price}"></td>
       <td th:text="${item.description}"></td>
-      <td th:text="${item.category.name}"></td>
+      <td th:text="${item.subcategory.category.name}"></td>
+      <td th:text="${item.subcategory.subname}"></td>
     </tr>
     </tbody>
   </table>

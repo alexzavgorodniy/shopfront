@@ -7,7 +7,15 @@
   <div class="header">
     <h3>Список всех доступных категорий товаров</h3>
   </div>
-  <div th:include="category :: categorySelect"></div>
+  <table class="table table-center-content">
+    <tr>
+      <td>
+        <label>Выбранная категория:</label>
+        <h4 th:text="${categoryName}"></h4>
+      </td>
+      <td th:include="subcategory :: subcategorySelect"></td>
+    </tr>
+  </table>
 </div>
 </body>
 </html>

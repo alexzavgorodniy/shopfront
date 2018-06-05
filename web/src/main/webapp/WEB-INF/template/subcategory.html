@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:fragment="subcategorySelect">
+<body>
+<div>
+  <form name="subcat" th:object="${selectedSubcategory}" method="post">
+    <div>
+      <label>Выберите подкатегорию:</label>
+      <select th:field="*{id}">
+        <option th:each="subcategory : ${subcategories}"
+                th:value="${subcategory.id}"
+                th:text="${subcategory.subname}"></option>
+      </select>
+    </div>
+    <div>
+      <input class="btn btn-primary" name="submit" type="submit" value="Выбрать"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

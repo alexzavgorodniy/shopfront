@@ -5,23 +5,22 @@
 
 <div th:fragment="content">
   <div class="header">
-    <h3>Редактирование производителя</h3>
+    <h3>Редактирование категории</h3>
   </div>
-  <form name="newManufacturer" method="post" th:object="${newManufacturer}">
-    <table class="table">
+  <form name="newCategory" method="post" th:object="${newCategory}">
+    <table class="table table-center-content">
       <tr>
         <td>
-          <label>Текущий производитель товара</label>
+          <label>Текущая категория товара</label>
         </td>
         <td>
-          <label th:text="${oldManufacturer.title}"></label>
+          <label for="newCategoryName" th:text="${oldCategory.name}"></label>
         </td>
         <td>
           <label>Новое значение</label>
         </td>
         <td>
-          <input id="newManufacturerTitle" name="newManufacturerTitle" type="text"
-                 th:field="*{title}">
+          <input id="newCategoryName" name="newCategoryName" type="text" th:field="*{name}">
         </td>
       </tr>
     </table>
