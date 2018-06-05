@@ -26,6 +26,9 @@ public class ItemRepositoryIT extends RepositoryIT {
     private CategoryRepository categoryRepository;
 
     @Autowired
+    private SubcategoryRepository subcategoryRepository;
+
+    @Autowired
     private EntityManager entityManager;
 
     @Test
@@ -43,6 +46,7 @@ public class ItemRepositoryIT extends RepositoryIT {
         item.setManufacturer(manufacturer);
         manufacturerRepository.save(manufacturer);
         categoryRepository.save(category);
+        subcategoryRepository.save(subcategory);
         //when
         repository.save(item);
         //then

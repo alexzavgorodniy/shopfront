@@ -2,6 +2,7 @@ package repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import model.Category;
 import org.junit.Test;
@@ -21,8 +22,9 @@ public class CategoryRepositoryIT extends RepositoryIT {
         //when
         repository.save(category);
         //then
-        Category maybeCategory = entityManager
-                .createQuery("SELECT c FROM Category c", Category.class).getSingleResult();
-        assertEquals(category,maybeCategory);
+        List<Category> resultList = entityManager
+                .createQuery("SELECT c FROM Category c", Category.class).getResultList();
+        Category maybeCategory = resultList.get(resultList.size() - 1);
+        assertEquals(category, maybeCategory);
     }
 }
