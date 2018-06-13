@@ -29,3 +29,7 @@ tr:hover {
 .table-center-content {
  text-align: center;
 }
+
+a:hover {
+  color: LightBlue;
+}
