@@ -6,6 +6,14 @@
 <div th:fragment="content">
 
   <h4>Просмотр товаров доступен:</h4>
+  <nav>
+    <ul>
+      <li><a th:href="@{'/categorySelection'}">по категориям</a></li>
+      <li><a th:href="@{'/manufacturerSelection'}">по производителям</a></li>
+      <li><a th:href="@{'/availabilitySelection'}">по наличию на складе</a></li>
+      <li><a th:href="@{'/priceSelection'}">по цене</a></li>
+    </ul>
+  </nav>
   <form name="itemTitle" method="post">
   <table class="table table-center-content">
     <tr>
@@ -17,13 +25,6 @@
     </tr>
   </table>
   </form>
-  <a th:href="@{'/categorySelection'}">по категориям</a>
-  <p></p>
-  <a th:href="@{'/manufacturerSelection'}">по производителям</a>
-  <p></p>
-  <a th:href="@{'/availabilitySelection'}">по наличию на складе</a>
-  <p></p>
-  <a th:href="@{'/priceSelection'}">по цене</a>
 </div>
 </body>
 </html>
