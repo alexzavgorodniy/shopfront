@@ -5,20 +5,15 @@
 
 <div th:fragment="content">
   <div class="header">
-    <h4>В работе доступны 2 режима:</h4>
+    <h2>В работе доступны 2 режима:</h2>
   </div>
   <br>
-  <table class="table table-center-content">
-    <tr>
-      <td>
-        <label>Различные виды <a th:href="@{'/viewSelection'}">просмотра </a> товаров</label>
-      </td>
-      <td>
-        <label>Функции <a th:href="@{'/administrationPage'}">администрирования</a> для всего
-          магазина</label>
-      </td>
-    </tr>
-  </table>
+  <nav>
+    <ul>
+      <li><a th:href="@{'/viewSelection'}">Просмотр товаров </a></li>
+      <li><a th:href="@{'/administrationPage'}">Администрирование магазина</a></li>
+    </ul>
+  </nav>
 </div>
 </body>
 </html>
